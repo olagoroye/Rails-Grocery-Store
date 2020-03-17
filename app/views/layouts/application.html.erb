@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsGroceryStore</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <h2>Shopping Is Fun <%= user_signed_in? ? current_user.email : "Guest" %></h2>
+    
+        <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
+
+    <div class="nav">
+      <%= link_to "Log In", new_user_session_path %>
+      <%= link_to "Sign Up", new_user_registration_path  %>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+    
+      </div>
+    <%= yield %>
+  </body>
+</html>
