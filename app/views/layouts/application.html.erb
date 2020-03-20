@@ -12,16 +12,22 @@
   <body>
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
-        <h2>Shopping Is Fun <%= user_signed_in? ? current_user.email : "Guest" %></h2>
-    
+        <h2>Making Healthy Choices : <%= user_signed_in? ? current_user.email : "Guest" %></h2>
+     
         <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
-
+     
     <div class="nav">
       <%= link_to "Log In", new_user_session_path %>
+      </br>
       <%= link_to "Sign Up", new_user_registration_path  %>
+      </br>
+
       <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
     
       </div>
+      <%= link_to "Make your List", new_list_path(@list) %>
+            </br>
+        <%= link_to "All List", lists_path %>
     <%= yield %>
   </body>
 </html>

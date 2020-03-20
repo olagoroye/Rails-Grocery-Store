@@ -1,0 +1,14 @@
+
+<h1> Show Item </h1>
+
+<h2><%= @list.user %> - <%= @list.id %></h2>
+<ul>
+  <% @list.items.each do |item| %>
+    <li><%= item.name %> - <%= item.price %></li>
+  <% end %>
+</ul>
+
+<% if @list.user == current_user %>
+  <%= link_to "Edit list", edit_list_path(@list) %>
+  
+  <% end %>

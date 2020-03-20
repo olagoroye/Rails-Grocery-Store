@@ -1,0 +1,8 @@
+<h1>Show all List</h1>
+<% @lists.each do |list| %>
+    <li>
+<%= link_to list.title, list_path(list) %>
+    </li>
+
+    <% end %>
+    
