@@ -5,21 +5,12 @@ class ListsController < ApplicationController
   
     def new
         @list = List.new
-        
-      
         @items = Item.all
         Item.all.each { |item| @list.list_items.build(item_id: item.id )}
     end 
+    
     def create
-        # binding.pry
-    #     @list = List.new(list_params)
-    #     if @list.save
-    #         redirect_to list_path(@list)
-    #     else
-    #         @users = User.all
-    #         @items = Item.all
-    #         render :new
-    # end
+     
     @list = current_user.lists.build(list_params)
     if @list.save
       redirect_to list_path(@list)
@@ -41,6 +32,13 @@ class ListsController < ApplicationController
         else
             render :edit
         end 
+    def destroy
+        current_list
+        @list.destroy
+        redirect_to list_path(@list)
+    end 
+    
+
     end
     
     private
