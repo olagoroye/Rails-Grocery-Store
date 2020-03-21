@@ -12,7 +12,6 @@
     <%= f.text_field :title %>
     </br>
     <br>
-  
     
      <%# = f.collection_check_boxes :item_ids, @items, :id, :name %>
     </br>
@@ -26,6 +25,9 @@
       <%= item_field.number_field :quantity, min:1 %>
       </br>
       <% end %>
+</br>
+      
+      
     <%= f.submit %>
   <% end %>
 

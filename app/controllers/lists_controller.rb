@@ -32,15 +32,14 @@ class ListsController < ApplicationController
         else
             render :edit
         end 
+
+    end
     def destroy
         current_list
         @list.destroy
         redirect_to list_path(@list)
     end 
-    
 
-    end
-    
     private
 
     def current_list
