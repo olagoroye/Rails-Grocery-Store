@@ -21,7 +21,7 @@
              <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
              <%= link_to "Make your List", new_list_path(@list) %>
              <%= link_to "All List", lists_path %>
-             <%= link_to "Edit list", edit_list_path(@list) %>
+            
         <% else %>
              <%= link_to "Log In", new_user_session_path %>
              </br>

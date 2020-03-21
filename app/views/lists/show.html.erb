@@ -9,6 +9,7 @@
 </ul>
 
 <% if @list.user == user_signed_in? %>
+<%= link_to "Edit list", edit_list_path(@list) %>
 <%= link_to "delete list", list_path(@list) %>
   
   <% end %>
