@@ -19,8 +19,11 @@
         <div class="nav">
         <% if user_signed_in? %>
              <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+             </br>
              <%= link_to "Make your List", new_list_path(@list) %>
-             <%= link_to "View Items", list_items_path %>
+             </br>
+             <%= link_to "View Items", items_path %>
+             </br>
              <%= link_to "All List", lists_path %>
              
             
