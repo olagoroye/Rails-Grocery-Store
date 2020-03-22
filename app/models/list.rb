@@ -9,6 +9,8 @@ class List < ApplicationRecord
   
   validates :title, presence: true
 
+  scope :title, -> { where(title: true) }
+
 
   # validate :list_must_have_at_least_one_item
 
