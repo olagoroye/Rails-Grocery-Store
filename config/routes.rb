@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
   
-    resources :items 
+  resources :items 
 
  resources :user do 
   resource :list_items
+  
  end
   
   
-  resources :lists 
+ resources :lists do
+  resources :items 
+ end
      
  
 
