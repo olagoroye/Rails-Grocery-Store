@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
                 @items = List.find(params[:list_id])
                 else
                     flash[:alert] = "List not found"
-                    redirect_to items_path
+                    redirect_to list_items_path
                 end
             else 
                 @items = Item.all 
@@ -20,28 +20,40 @@ class ItemsController < ApplicationController
                 @item = Item.find(params[:id])
             else
                 flash[:alert] = "Item not found"
-                redirect_to list_items_path(params[:artist_id])
+                redirect_to list_items_path
         end 
 
         end
 
         def create
-            @item = Item.new(items_params)
-            
+
+            @list = current_user.lists.build(params[:id]) 
+            @item = @list.items.build(item_params)
             if @item.save
-              redirect_to items_path(@items)
+            redirect_to lists_path(@lists)
+
+            # user can pick item directly from list
+            # @item = Item.new(items_params)
+            
+            # if @item.save
+            #   redirect_to items_path(@items)
            else
             render :new
             end
-        
-    
         end
+  
     
     
+    def item_params
+        params.require(:item).permit(:user_id, :brand, :name, :description, :price, list_items_attributes: [:item_id, :quantity], item_ids: [])
+      end
     
+end
+
+
+     
     
-    
-    # def new
+ # def new
     #     #check if it's nested & it's a proper id
     #     if params[:list_id] && list = List.find_by_id(params[:list_id])
     #       #nested route
@@ -62,14 +74,3 @@ class ItemsController < ApplicationController
     #       render :new
     #     end
     #   end
-    
-    
-    def items_params
-        params.require(:item).permit(:user_id, :name, :description, :price, list_items_attributes: [:item_id, :quantity], item_ids: [])
-      end
-    
-end
-
-
-     
-    
