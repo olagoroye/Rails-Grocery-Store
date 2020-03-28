@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   
  resources :lists do
-  resources :items, only: [:new, :create, :index]
+  resources :items, only: [:new, :create, :index, :show]
  end
      
  

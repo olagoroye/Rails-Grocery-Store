@@ -13,7 +13,10 @@ class ItemsController < ApplicationController
             end
         end
         def new
-           @list =List.find_by(id: params[:list_id])
+            #check if it nested with proper id
+
+            @list =List.find_by(id: params[:list_id])
+        #    @list =List.find_by(id: params[:list_id])
         # binding.pry
             @item = Item.new
         end
@@ -32,21 +35,16 @@ class ItemsController < ApplicationController
             # binding.pry
             if params[:list_id]
                  @list =List.find_by(id: params[:list_id])  #parent
+                #  nested route
                 @item = @list.items.create(item_params)
             else
                 @item = Item.new(item_params)
                 
             end
-            # @list = current_user.lists.build(params[:id]) 
            
             if @item.save
             redirect_to items_path
 
-            # user can pick item directly from list
-            # @item = Item.new(items_params)
-            
-            # if @item.save
-            #   redirect_to items_path(@items)
            else
             render :new
             end
