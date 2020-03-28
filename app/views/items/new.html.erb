@@ -1,7 +1,13 @@
+<% if @item.errors.any? %>
+<h4 style="color: red;"><%= @item.errors.full_messages.to_sentence %></h4>
+
+<% end %>
+
+
 
 <h1>Create an Item</h1>
 
-<%= form_for @item do |f|%>
+<%= form_for [@list, @item] do |f|%>
   <br>
   <%= f.label :name %>
     <%= f.text_field :name %>

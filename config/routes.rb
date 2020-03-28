@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # get '/favorite/:icecream/color/:color_name', to: "items#testing"
   get 'items/create'
   resources :items 
 
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
   
   
  resources :lists do
-  resources :items 
+  resources :items, only: [:new, :create, :index]
  end
      
  

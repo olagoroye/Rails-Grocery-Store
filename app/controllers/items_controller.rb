@@ -13,6 +13,8 @@ class ItemsController < ApplicationController
             end
         end
         def new
+           @list =List.find_by(id: params[:list_id])
+        # binding.pry
             @item = Item.new
         end
         def show
@@ -26,11 +28,19 @@ class ItemsController < ApplicationController
         end
 
         def create
-
-            @list = current_user.lists.build(params[:id]) 
-            @item = @list.items.build(item_params)
+            # if the list_exist , else list doesn't exist
+            # binding.pry
+            if params[:list_id]
+                 @list =List.find_by(id: params[:list_id])  #parent
+                @item = @list.items.create(item_params)
+            else
+                @item = Item.new(item_params)
+                
+            end
+            # @list = current_user.lists.build(params[:id]) 
+           
             if @item.save
-            redirect_to lists_path(@lists)
+            redirect_to items_path
 
             # user can pick item directly from list
             # @item = Item.new(items_params)
@@ -41,7 +51,7 @@ class ItemsController < ApplicationController
             render :new
             end
         end
-  
+       
     
     
     def item_params
