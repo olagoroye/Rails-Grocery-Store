@@ -38,18 +38,17 @@ class ItemsController < ApplicationController
         end
 
         def create
-            # if the list_exist , else list doesn't exist
-            # binding.pry
+            # if the list_exist , else list doesn't exist 
             if params[:list_id]
                  @list =List.find_by(id: params[:list_id])  #parent
-                #  nested route
-                @item = @list.items.create(item_params)
+                
+                @item = @list.items.create(item_params) #  nested route
             else
                 @item = Item.new(item_params)
                 
             end
            
-            if @item.save
+             if @item.save
             redirect_to items_path
 
            else
@@ -58,7 +57,7 @@ class ItemsController < ApplicationController
         end
        
         def edit
-            if Item.find_by(id: params[:id])
+             if Item.find_by(id: params[:id])
                 @item = Item.find(params[:id])
                 list_items = ListItem.where("item_id = ?",params[:id])
                 @lists = list_items.map{|list_item| List.find_by(id: list_item.list_id)}
@@ -68,6 +67,7 @@ class ItemsController < ApplicationController
                 redirect_to list_items_path
         end 
         end
+
         def update
                 @item = Item.find(params[:id])
                 if @item.update(item_params)
@@ -77,7 +77,16 @@ class ItemsController < ApplicationController
                 end         
         
             end 
-
+            def destroy
+                if Item.find_by(id: params[:id])
+                    @item = Item.find(params[:id])
+                    list_items = ListItem.where("item_id = ?",params[:id])
+                    @lists = list_items.map{|list_item| List.find_by(id: list_item.list_id)}
+                @item.destroy
+                redirect_to items_path
+            end 
+        end
+        
     
     
     def item_params
