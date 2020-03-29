@@ -1,0 +1,20 @@
+
+
+<h1> <%= @item.name %></h1>
+
+<p> <%= @item.brand %> </p>
+<p><%= @item.description %>  </p>
+<p><%= @item.price %>  </p>
+
+ <ul> <% @lists.each do |list|%>
+<li> 
+<%= link_to list.title, list_path(list) %> - 
+user:<%= list.user.username %> 
+
+</li>
+  <% end %>
+  </ul>
+
+  <%= link_to "Edit Item", edit_item_path(@item) %>
+  
+  

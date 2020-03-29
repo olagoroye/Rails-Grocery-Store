@@ -1,9 +1,9 @@
 
 <%= render 'error' %>
 
-<h1>Create an Item</h1>
+<h1>Edit an Item</h1>
 
-<%= form_for [@list, @item] do |f|%>
+<%= form_for @item do |f|%>
   <br>
   <%= f.label :name %>
     <%= f.text_field :name %>

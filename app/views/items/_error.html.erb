@@ -1,0 +1,5 @@
+
+<% if @item.errors.any? %>
+<h4 style="color: red;"><%= @item.errors.full_messages.to_sentence %></h4>
+
+<% end %>

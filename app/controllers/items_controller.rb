@@ -3,7 +3,11 @@ class ItemsController < ApplicationController
             @items = Item.new
             if params[:list_id]
                 if List.find_by(id: params[:list_id])
-                @items = List.find(params[:list_id])
+                # @items = List.find(params[:list_id])
+                list_items = ListItem.where("list_id = ?",params[:list_id])
+                @items = list_items.map{|list_item| Item.find_by(id: list_item.item_id)}
+
+                
                 else
                     flash[:alert] = "List not found"
                     redirect_to list_items_path
@@ -23,6 +27,9 @@ class ItemsController < ApplicationController
         def show
             if Item.find_by(id: params[:id])
                 @item = Item.find(params[:id])
+                list_items = ListItem.where("item_id = ?",params[:id])
+                @lists = list_items.map{|list_item| List.find_by(id: list_item.list_id)}
+
             else
                 flash[:alert] = "Item not found"
                 redirect_to list_items_path
@@ -50,6 +57,27 @@ class ItemsController < ApplicationController
             end
         end
        
+        def edit
+            if Item.find_by(id: params[:id])
+                @item = Item.find(params[:id])
+                list_items = ListItem.where("item_id = ?",params[:id])
+                @lists = list_items.map{|list_item| List.find_by(id: list_item.list_id)}
+
+            else
+                flash[:alert] = "Item not found"
+                redirect_to list_items_path
+        end 
+        end
+        def update
+                @item = Item.find(params[:id])
+                if @item.update(item_params)
+                    redirect_to item_path(@item)
+                else
+                    render :edit
+                end         
+        
+            end 
+
     
     
     def item_params

@@ -1,5 +1,5 @@
 
-<h1> Show Item </h1>
+<h1> List Items</h1>
 <% if @list.user.id == current_user.id %>
 <h2><%= @list.user.username %> - <%= @list.id %></h2>
 <ul>
@@ -8,7 +8,10 @@
   <% end %>
 </ul>
 
-<%= link_to "Add/create new Item", new_item_path(@item) %>
+<%= link_to  "Item Details", list_items_path(@list) %>
+
+<%= link_to "Add/create new Item", new_list_item_path(@list) %>
+
     <%= link_to "Edit list", edit_list_path(@list) %>
     <%= link_to "delete list", list_path(@list), method: :delete %>
     </br>
