@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   # get '/favorite/:icecream/color/:color_name', to: "items#testing"
-  get 'items/create'
+  # get 'items/create'
   resources :items 
 
  resources :user do 
-  resource :list_items
+  resources :list_items
   
  end
   

@@ -9,7 +9,7 @@ class List < ApplicationRecord
   
   validates :title, presence: true
 
-  scope :title, -> { where(title: true) }
+   scope :title, -> { where(title: true) }
 
 
 end

@@ -1,12 +1,13 @@
 class ItemsController < ApplicationController
         def index 
-            @items = Item.new
+            # @items = Item.new
             if params[:list_id]
-                if List.find_by(id: params[:list_id])
+                #if List.find_by(id: params[:list_id])
+                if list = List.find_by(id: params[:list_id])
                 # @items = List.find(params[:list_id])
-                list_items = ListItem.where("list_id = ?",params[:list_id])
-                @items = list_items.map{|list_item| Item.find_by(id: list_item.item_id)}
-
+                # list_items = ListItem.where("list_id = ?",params[:list_id])
+                # @items = list_items.map{|list_item| Item.find_by(id: list_item.item_id)}
+                @items = list.items
                 
                 else
                     flash[:alert] = "List not found"
