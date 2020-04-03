@@ -5,10 +5,15 @@
       <%= link_to item.name, item_path(item) %> - :price
       <%= item.price %> -
       description: <%= item.description %> 
-              
+      <% if params[:list_id] %> 
+      </br>
+      
+  <%= link_to "delete item", remove_item_path(params[:list_id],item.id), method: :delete %>
+
+      <% end %>       
     </p>
        
   <% end %>
-
+  
   
   

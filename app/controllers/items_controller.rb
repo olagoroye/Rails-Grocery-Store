@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
         def index 
+            # binding.pry
             # @items = Item.new
             if params[:list_id]
                 #if List.find_by(id: params[:list_id])
@@ -78,16 +79,7 @@ class ItemsController < ApplicationController
                 end         
         
             end 
-            def destroy
-                if Item.find_by(id: params[:id])
-                    @item = Item.find(params[:id])
-                    list_items = ListItem.where("item_id = ?",params[:id])
-                    @lists = list_items.map{|list_item| List.find_by(id: list_item.list_id)}
-                @item.destroy
-                redirect_to items_path
-            end 
-        end
-        
+            
     
     
     def item_params

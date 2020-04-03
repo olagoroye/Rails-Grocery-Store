@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   # get 'items/create'
   resources :items 
 
- resources :user do 
-  resources :list_items
-  
- end
+ resources :user
+# resources :list_items
+
+  delete '/remove_item/:list_id/:item_id', to: "list_items#destroy", as: "remove_item"
+ 
   
   
  resources :lists do
