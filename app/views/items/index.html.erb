@@ -1,9 +1,17 @@
 <h1>View Items Available</h1>
 
+
+<%= form_tag("/items", method: "get") do %>
+  <%= label_tag( :price, "Items_less_than_ten:") %>
+  <%= hidden_field :price, :items %>
+  <%= submit_tag("below_ten") %>
+<% end %>
+
+
  <% @items.each do |item|%>
    <p>
-      <%= link_to item.name, item_path(item) %> - :price
-      <%= item.price %> -
+      <%= link_to item.name, item_path(item) %> -          
+      :price <%= item.price %> -
       description: <%= item.description %> 
       <% if params[:list_id] %> 
       </br>

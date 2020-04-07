@@ -6,8 +6,9 @@ class Item < ApplicationRecord
     validates :name, :price, :description, presence: true
 
 
-scope :items_less_than_ten, -> {where("price < ?", 10) }
+scope :items_less_than_ten, -> (price){where("price < ?", 10) }
 
-# scope :title, -> { where(title: true) }
+
+
 
 end

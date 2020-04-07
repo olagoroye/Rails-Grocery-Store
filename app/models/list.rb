@@ -8,8 +8,5 @@ class List < ApplicationRecord
   accepts_nested_attributes_for :list_items, reject_if: proc { |attributes| attributes['quantity'].blank? }
   
   validates :title, presence: true
-
-   scope :title, -> { where(title: true) }
-
-
+  
 end
