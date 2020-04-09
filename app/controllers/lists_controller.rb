@@ -1,6 +1,9 @@
 class ListsController < ApplicationController
     def index
         @lists = List.all
+        # @list = Item.all.each { |item| Item.find_by(id: list_item.item_id}
+    
+        @items = Item.favourite_items 
     end
   
     def new
@@ -12,19 +15,23 @@ class ListsController < ApplicationController
     def create
      
     @list = current_user.lists.build(list_params)
-    if @list.save
+     if @list.save
       redirect_to list_path(@list)
-    else
+      else
      
-      render :new
-    end
+         render :new
+      end
     end 
+
+
     def show
         current_list
     end 
+
     def edit
         current_list
     end
+
     def update
         current_list
         if @list.update(list_params)
@@ -34,6 +41,8 @@ class ListsController < ApplicationController
         end 
 
     end
+
+
     def destroy
         current_list
         @list.destroy

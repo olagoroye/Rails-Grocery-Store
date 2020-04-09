@@ -11,11 +11,10 @@ class ItemsController < ApplicationController
             else 
                 if params[:price]
                  @items = Item.items_less_than_ten(params[:price])
+                       
+                else
                  
-                else    
-               
-                    @items = Item.all
-                
+                 @items = Item.all 
                 end
             end
         end
@@ -25,8 +24,6 @@ class ItemsController < ApplicationController
             @list =List.find_by(id: params[:list_id])
             @item = Item.new
         end
-
-
 
         def show
             if Item.find_by(id: params[:id])
